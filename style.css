@@ -728,45 +728,31 @@ img {
 }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
+
+/* --- Tablet landscape & small desktop (≤1024px) --- */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+    padding: 0 32px;
+  }
+
+  .nav__container {
+    max-width: 960px;
+    padding: 0 32px;
+  }
+
   .nav__links {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: var(--nav-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: center;
-    padding: 32px 0;
     gap: 24px;
-    border-bottom: 1px solid var(--border);
-    transform: translateY(-120%);
-    transition: transform var(--transition);
-    z-index: 999;
-  }
-
-  .nav__links.is-open {
-    transform: translateY(0);
-  }
-
-  .burger {
-    display: flex;
-  }
-
-  .about__grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
   }
 
   .skills__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
 
   .projects__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   .contact__grid {
@@ -774,26 +760,489 @@ img {
     gap: 16px;
   }
 
+  .section {
+    padding: 80px 0;
+  }
+
+  .about__grid {
+    gap: 36px;
+  }
+
+  .shape--1 {
+    width: 380px;
+    height: 380px;
+  }
+
+  .shape--2 {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+/* --- Tablet portrait (≤768px) --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .nav__container {
+    padding: 0 24px;
+  }
+
+  /* Mobile navigation menu */
+  .nav__links {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 24px;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  .nav__links.is-open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav__link {
+    font-size: 1.1rem;
+    padding: 14px 24px;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition);
+  }
+
+  .nav__link:hover,
+  .nav__link.is-active {
+    background: var(--accent-glow);
+    color: var(--accent);
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  /* Body scroll lock when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: calc(100vh - 72px);
+    min-height: calc(100dvh - 72px);
+    padding: 72px 0 48px;
+  }
+
+  .hero__greeting {
+    font-size: 0.9rem;
+  }
+
+  .hero__desc {
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+    padding: 0 8px;
+  }
+
   .hero__scroll {
     display: none;
   }
 
+  /* About */
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 8px;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .stat-card__number {
+    font-size: 1.75rem;
+    min-width: unset;
+  }
+
+  .stat-card__label {
+    font-size: 0.75rem;
+  }
+
+  /* Skills */
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .skill-card {
+    padding: 24px 16px;
+  }
+
+  .skill-card__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Projects */
+  .projects__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card__preview {
+    height: 150px;
+  }
+
+  .project-card__body {
+    padding: 20px;
+  }
+
+  /* Contact */
+  .contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .contact-card {
+    padding: 24px 16px;
+  }
+
+  .contact-card__value {
+    font-size: 0.82rem;
+    word-break: break-all;
+  }
+
+  /* Sections */
   .section {
-    padding: 72px 0;
+    padding: 64px 0;
+  }
+
+  .section__title {
+    margin-bottom: 12px;
+  }
+
+  .section__subtitle {
+    margin-bottom: 36px;
+    font-size: 0.9rem;
+  }
+
+  /* Background shapes — reduce for performance */
+  .shape--1 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .shape--2 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .shape--3 {
+    width: 120px;
+    height: 120px;
   }
 }
 
+/* --- Mobile phones (≤480px) --- */
 @media (max-width: 480px) {
-  .skills__grid {
-    grid-template-columns: 1fr;
+  .container {
+    padding: 0 16px;
+  }
+
+  .nav__container {
+    padding: 0 16px;
+    height: 64px;
+  }
+
+  .nav__avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav__links {
+    top: 64px;
+    padding: 32px 16px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 64px 0 40px;
+  }
+
+  .hero__greeting {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
   }
 
   .hero__name {
-    font-size: 2rem;
+    font-size: 1.85rem;
+    margin-bottom: 12px;
+  }
+
+  .hero__role {
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+
+  .hero__desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
   .btn {
-    padding: 12px 24px;
+    padding: 12px 28px;
     font-size: 0.85rem;
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
+  /* About */
+  .about__text p {
+    font-size: 0.88rem;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 16px 8px;
+  }
+
+  .stat-card__number {
+    font-size: 1.5rem;
+  }
+
+  .stat-card__label {
+    font-size: 0.68rem;
+  }
+
+  /* Skills */
+  .skills__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-card {
+    padding: 20px 12px;
+  }
+
+  .skill-card__title {
+    font-size: 0.88rem;
+  }
+
+  .skill-card__desc {
+    font-size: 0.75rem;
+  }
+
+  /* Projects */
+  .project-card__preview {
+    height: 130px;
+  }
+
+  .project-card__body {
+    padding: 16px;
+  }
+
+  .project-card__title {
+    font-size: 1.05rem;
+  }
+
+  .project-card__desc {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+  }
+
+  /* Contact */
+  .contact__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .contact-card {
+    padding: 20px 12px;
+    gap: 8px;
+  }
+
+  .contact-card svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contact-card__label {
+    font-size: 0.68rem;
+  }
+
+  .contact-card__value {
+    font-size: 0.75rem;
+  }
+
+  /* Sections */
+  .section {
+    padding: 48px 0;
+  }
+
+  .section__subtitle {
+    margin-bottom: 28px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 0;
+  }
+
+  .footer__inner {
+    font-size: 0.75rem;
+  }
+}
+
+/* --- Very small phones (≤360px) --- */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .hero__name {
+    font-size: 1.6rem;
+  }
+
+  .hero__role {
+    font-size: 0.85rem;
+  }
+
+  .about__stats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .stat-card {
+    flex-direction: row;
+    text-align: left;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .stat-card__number {
+    min-width: 40px;
+  }
+
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .contact-card {
+    flex-direction: row;
+    text-align: left;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .btn {
+    max-width: 100%;
+  }
+}
+
+/* ========== TOUCH DEVICE OPTIMIZATIONS ========== */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover transforms on touch — prevents sticky hover states */
+  .project-card:hover {
+    transform: none;
+  }
+
+  .skill-card:hover {
+    transform: none;
+  }
+
+  .contact-card:hover {
+    transform: none;
+  }
+
+  .stat-card:hover {
+    transform: none;
+  }
+
+  /* Add active state feedback instead */
+  .project-card:active {
+    transform: scale(0.98);
+  }
+
+  .skill-card:active {
+    transform: scale(0.97);
+  }
+
+  .contact-card:active {
+    transform: scale(0.97);
+  }
+
+  .btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Ensure minimum touch target size (44x44px) */
+  .nav__link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .project-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }

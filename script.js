@@ -20,6 +20,7 @@ const navLinks = document.getElementById('navLinks');
 burger.addEventListener('click', () => {
   burger.classList.toggle('is-active');
   navLinks.classList.toggle('is-open');
+  document.body.classList.toggle('menu-open');
 });
 
 // Close menu on link click
@@ -27,6 +28,7 @@ navLinks.querySelectorAll('.nav__link').forEach(link => {
   link.addEventListener('click', () => {
     burger.classList.remove('is-active');
     navLinks.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
   });
 });
 
