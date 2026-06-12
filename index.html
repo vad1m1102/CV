@@ -379,8 +379,46 @@
           <span class="contact-card__value">Vadim Voitsehivskyi</span>
         </a>
       </div>
+
+      <!-- Feedback Form -->
+      <div class="feedback" data-animate="fade-up" data-delay="500">
+        <h3 class="feedback__title">Напишіть мені</h3>
+        <form class="feedback__form" id="feedbackForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="feedbackName">Ім'я</label>
+            <input class="form-input" type="text" id="feedbackName" name="name" placeholder="Ваше ім'я" autocomplete="name">
+            <span class="form-error" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="feedbackEmail">Email</label>
+            <input class="form-input" type="email" id="feedbackEmail" name="email" placeholder="your@email.com" autocomplete="email">
+            <span class="form-error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="feedbackMessage">Повідомлення</label>
+            <textarea class="form-input form-textarea" id="feedbackMessage" name="message" placeholder="Ваше повідомлення..." rows="5"></textarea>
+            <span class="form-error" id="messageError"></span>
+          </div>
+          <button class="btn btn--primary feedback__submit" type="submit" id="feedbackSubmit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+            Надіслати
+          </button>
+        </form>
+      </div>
+
     </div>
   </section>
+
+  <!-- Success Toast -->
+  <div class="toast" id="successToast">
+    <svg class="toast__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+    <span class="toast__text">Повідомлення успішно надіслано!</span>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">

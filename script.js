@@ -101,3 +101,105 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ========== FEEDBACK FORM ==========
+const feedbackForm = document.getElementById('feedbackForm');
+const nameInput = document.getElementById('feedbackName');
+const emailInput = document.getElementById('feedbackEmail');
+const messageInput = document.getElementById('feedbackMessage');
+const nameError = document.getElementById('nameError');
+const emailError = document.getElementById('emailError');
+const messageError = document.getElementById('messageError');
+const toast = document.getElementById('successToast');
+
+// Email regex
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Clear error on input
+[nameInput, emailInput, messageInput].forEach(input => {
+  input.addEventListener('input', () => {
+    input.classList.remove('is-invalid');
+    const errorEl = document.getElementById(input.name + 'Error');
+    if (errorEl) errorEl.textContent = '';
+  });
+});
+
+function validateForm() {
+  let isValid = true;
+
+  // Name validation
+  const name = nameInput.value.trim();
+  if (!name) {
+    nameError.textContent = "Будь ласка, введіть ваше ім'я";
+    nameInput.classList.add('is-invalid');
+    isValid = false;
+  } else if (name.length < 2) {
+    nameError.textContent = "Ім'я повинно містити щонайменше 2 символи";
+    nameInput.classList.add('is-invalid');
+    isValid = false;
+  } else {
+    nameError.textContent = '';
+    nameInput.classList.remove('is-invalid');
+  }
+
+
+  const email = emailInput.value.trim();
+  if (!email) {
+    emailError.textContent = 'Будь ласка, введіть email';
+    emailInput.classList.add('is-invalid');
+    isValid = false;
+  } else if (!emailRegex.test(email)) {
+    emailError.textContent = 'Введіть коректну email адресу';
+    emailInput.classList.add('is-invalid');
+    isValid = false;
+  } else {
+    emailError.textContent = '';
+    emailInput.classList.remove('is-invalid');
+  }
+
+
+  const message = messageInput.value.trim();
+  if (!message) {
+    messageError.textContent = 'Будь ласка, введіть повідомлення';
+    messageInput.classList.add('is-invalid');
+    isValid = false;
+  } else if (message.length < 10) {
+    messageError.textContent = 'Повідомлення повинно містити щонайменше 10 символів';
+    messageInput.classList.add('is-invalid');
+    isValid = false;
+  } else {
+    messageError.textContent = '';
+    messageInput.classList.remove('is-invalid');
+  }
+
+  return isValid;
+}
+
+function showToast() {
+  toast.classList.add('is-visible');
+  setTimeout(() => {
+    toast.classList.remove('is-visible');
+  }, 4000);
+}
+
+feedbackForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  const feedbackData = {
+    name: nameInput.value.trim(),
+    email: emailInput.value.trim(),
+    message: messageInput.value.trim(),
+    date: new Date().toISOString()
+  };
+
+  const existing = JSON.parse(localStorage.getItem('feedbackMessages') || '[]');
+  existing.push(feedbackData);
+  localStorage.setItem('feedbackMessages', JSON.stringify(existing));
+
+  feedbackForm.reset();
+
+
+  showToast();
+});
